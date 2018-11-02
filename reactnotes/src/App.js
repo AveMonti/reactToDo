@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import Note from './Note/Note';
+import NoteForm from './NoteForm/NoteForm';
 import './App.css';
 
 class App extends Component {
@@ -11,8 +12,8 @@ class App extends Component {
     // We'are setup here React states of note components
     this.state = {
       notes: [
-        {id: 1, content: "noteContent 1"},
-        {id: 2, content: "noteContent 1"}
+        {id: 1, noteContent: "noteContent 1"},
+        {id: 2, noteContent: "noteContent 1"}
       ],
     }
   }
@@ -25,10 +26,16 @@ class App extends Component {
             <div className="heading">React & and firebase ToDo list </div>
         </div>
         <div className="notesBody">
-          <Note noteContent={} noteId={} key={}  />
+          {
+            this.state.notes.map((note) => {
+              return (
+                  <Note noteContent={note.noteContent} noteId={note.id} key={note.id}  />
+              )
+            })
+          }
         </div>
         <div className="notesFooter">
-          Footer will go here
+          <NoteForm />
         </div>
       </div>
     );
