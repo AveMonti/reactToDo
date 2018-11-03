@@ -9,6 +9,7 @@ class App extends Component {
   constructor(props){
     super(props);
 
+    this.addNote = this.addNote.bind(this);
     // We'are setup here React states of note components
     this.state = {
       notes: [
@@ -18,6 +19,19 @@ class App extends Component {
     }
   }
 
+  addNote(note){
+      // push note on the notes array
+      const previusNotes = this.state.notes;
+      previusNotes.push({
+          id: previusNotes.length + 1,
+          noteContent: note
+      });
+
+      this.setState({
+           notes: previusNotes
+      });
+
+  }
 
   render() {
     return (
@@ -35,7 +49,7 @@ class App extends Component {
           }
         </div>
         <div className="notesFooter">
-          <NoteForm />
+          <NoteForm addNote={this.addNote}/>
         </div>
       </div>
     );
